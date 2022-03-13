@@ -3,7 +3,11 @@
 // Copyright 2021 NNTU-CS
 
 int cbinsearch(int *arr, int size, int value) {
-    int quan = 0;
-    for (int i = 0; i < size; i++) { if (*(arr + i) == value) { quan += 1; } }
-    return quan;
+    if (size == 1) {
+        if (*arr == value) { return 1; }
+        else return 0;
+    }
+    else {
+        return cbinsearch(arr, size / 2, value) + cbinsearch(arr + size / 2, size / 2 + (size % 2), value);
+    }
 }
